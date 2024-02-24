@@ -11,18 +11,14 @@ BOOST_AUTO_TEST_CASE(test_valid_version)
     BOOST_CHECK(version() > 0);
 }
 
-
-
-// сортировка в обратном лексикографическом порядке
 BOOST_AUTO_TEST_CASE(test1)
 {
-    bool  res = true;
-
-    BOOST_CHECK( res );
-	
-	/*
+    bool  res;
     int sz = 3;
     Bulk b(sz);
+
+    streambuf* standartCoutBuf = cout.rdbuf();
+    streambuf* standartCinBuf = cin.rdbuf();
 
     {
         ostringstream out;
@@ -31,7 +27,8 @@ BOOST_AUTO_TEST_CASE(test1)
         cin.rdbuf(in.rdbuf());
         in.str("a b c");
         b.processLoop();
-        bool x = (out.str() == "bulk: a, b, c\n");
+        res = (out.str() == "bulk: a, b, c\n");
+	BOOST_CHECK( res );
     }
 
     {
@@ -41,7 +38,8 @@ BOOST_AUTO_TEST_CASE(test1)
         cin.rdbuf(in.rdbuf());
         in.str("a b { c d e }");
         b.processLoop();
-        bool x = (out.str() == "bulk: a, b\nbulk: c, d, e\n");
+        res = (out.str() == "bulk: a, b\nbulk: c, d, e\n");
+	BOOST_CHECK( res );
     }
 
     {
@@ -51,7 +49,8 @@ BOOST_AUTO_TEST_CASE(test1)
         cin.rdbuf(in.rdbuf());
         in.str("a b { c d e { f g } h } i j k");
         b.processLoop();
-        bool x = (out.str() == "bulk: a, b\nbulk: c, d, e, f, g, h\nbulk: i, j, k\n");
+        res = (out.str() == "bulk: a, b\nbulk: c, d, e, f, g, h\nbulk: i, j, k\n");
+	BOOST_CHECK( res );
     }
 
     {
@@ -61,7 +60,8 @@ BOOST_AUTO_TEST_CASE(test1)
         cin.rdbuf(in.rdbuf());
         in.str("a b c d e ");
         b.processLoop();
-        bool x = (out.str() == "bulk: a, b, c\nbulk: d, e\n");
+        res = (out.str() == "bulk: a, b, c\nbulk: d, e\n");
+	BOOST_CHECK( res );
     }
 
     {
@@ -71,9 +71,13 @@ BOOST_AUTO_TEST_CASE(test1)
         cin.rdbuf(in.rdbuf());
         in.str("{ a b } ");
         b.processLoop();
-        bool x = (out.str() == "");
+        res = (out.str() == "");
+	BOOST_CHECK( res );
     }
-	*/
+
+    cout.rdbuf(standartCoutBuf);
+    cin.rdbuf(standartCinBuf);
+	
 
 }
 
