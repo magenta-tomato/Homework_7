@@ -20,7 +20,6 @@ void Bulk::processLoop()
 {
     string cmd;
     State state = State::Unset;
-    fileName.clear();
 
     while( cin >> cmd ) {
 
@@ -145,4 +144,5 @@ void Bulk::writeFile()
     file.close();
 
     commands.clear();
+    fileName.clear();
 }
